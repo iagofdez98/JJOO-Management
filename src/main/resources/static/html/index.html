@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.15.4/bootstrap-table.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script>
+        function ajaxRequest(params) {
+            var url = 'http://localhost:8080/sedes/agrupacion'
+            $.get(url + '?' + $.param(params.data)).then(function (res) {
+                params.success(res)
+            })
+        }
+    </script>
+
+    <title>Olympic Games Management</title>
+</head>
+
+<body class="text-center d-flex">
+
+<div class="div-center cover-container d-flex h-100 p-3 mx-auto ">
+
+    <main>
+        <h1 class="cover-heading">Olympic Games Management</h1>
+        <p class="lead">
+            Do you want to know where all the olympic games were held? Press this button to know it
+        </p>
+
+        <button type="button" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#modalTable">
+            Let's see!</button>
+    </main>
+
+    <div id="modalTable" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-dark"
+                           data-toggle="table"
+                           data-ajax="ajaxRequest">
+                        <thead>
+                        <tr>
+                            <th data-field="idCiudad">ID Ciudad</th>
+                            <th data-field="nombreCiudad">Nombre Ciudad</th>
+                            <th data-field="idPais">ID Pais</th>
+                            <th data-field="nombrePais">Nombre Pais</th>
+                            <th data-field="descripcion">Descripcion</th>
+                            <th data-field="valor">Valor</th>
+                            <th data-field="veces">Veces</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>Front hecho por <a href="https://www.linkedin.com/in/ifmartinez/">Iago Fernandez</a>, para <a href="https://www.qindel.com/">Qindle Group</a>.</p>
+    </div>
+</footer>
+
+</body>
